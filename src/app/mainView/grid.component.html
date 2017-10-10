@@ -1,0 +1,15 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>tableHeader</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let v of vulnerabilities; let i=index">
+                <td>{{i}}</td>
+                <td>{{v.info}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

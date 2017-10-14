@@ -1,0 +1,26 @@
+  <div class = "col-md-6 mx-auto">
+  <div>
+    <canvas baseChart 
+      [data]="lineChartData" 
+      [labels]="lineChartLabels" 
+      [options]="lineChartOptions" 
+      [chartType]="lineChartType"
+      (chartHover)="chartHovered($event)" 
+      (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+    <br>
+  <div>
+    <canvas baseChart 
+      [data]="pieChartData" 
+      [labels]="pieChartLabels" 
+      [chartType]="pieChartType" 
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+  <br>
+  <div class="text-center">
+    <button class="btn btn-info" (click)="changeType()">Change Type</button>
+  </div>
+  </div>

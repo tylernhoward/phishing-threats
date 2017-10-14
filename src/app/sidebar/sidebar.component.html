@@ -1,0 +1,60 @@
+<div class="card border-success">
+  <div class="card-heading">
+    <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Description</p>
+    <hr>
+  </div>
+  <div class="card-body">
+    <p>{{description}}</p>
+  </div>
+</div>
+<br>
+<div class="card border-info">
+  <div class="card-heading">
+    <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Filters</p>
+    <hr>
+  </div>
+  <div class="card-body">
+
+    <form name="filter">
+        <div ng-if="noResults" class="alert alert-warning">
+          <p>No results</p>
+        </div>
+        <div class="dropdown row">
+          <p class="">Country: </p>
+          <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="" data-toggle="dropdown">
+            {{CHANGETHIS}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" ng-repeat="" ng-click="">{{CHANGE}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown row">
+          <p class="">Targets: </p>
+          <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">            {{CHACHD}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" ng-repeat="" ng-click="">{{sadfasdfasdf}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown row">
+          <p class="">Time: </p>
+          <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown">
+            {{timeFilter}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" ng-repeat="" ng-click="">{{fdgfd}}</a>
+            </li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-danger" ng-click="resetFilters()" style="margin:5px;">Reset All</button>
+    </form>
+  </div>
+</div>

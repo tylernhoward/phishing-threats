@@ -1,22 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">{{title}}</a>
 </nav>
-<br>
-<div class = "container" style="margin-bottom: 50px;">
-    <div class="row">
-        <div class="col-md-8">
-            <app-map></app-map>
-        </div>
-        <div class="col-md-4">
-            <app-sidebar></app-sidebar>
+<br>    
+    <div *ngIf = "phishLoc">
+        <div class="container-fluid" style="margin-bottom: 50px;">
+            <div class="row">
+                <div class="col-md-7 mx-auto">
+                    <app-map [data]="phishLoc"></app-map>
+                </div>
+                <div class="col-md-4 mx-auto">
+                    <app-sidebar></app-sidebar>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-    <div class="jumbotron">
-        <app-chart></app-chart>
-    </div>
-    <div class="mx-auto col-md-8">
-        <app-grid></app-grid>
+
+    <div *ngIf="phishData">
+        <div class="jumbotron">
+            <app-chart [cdata] = "phishData"></app-chart>
+        </div>
+    
+        <div class="mx-auto col-md-11">
+            <app-grid [data] = "phishData"></app-grid>
+        </div>
     </div>
 
 

@@ -1,26 +1,53 @@
-  <div class = "col-md-6 mx-auto">
-  <div>
-    <canvas baseChart 
-      [data]="lineChartData" 
-      [labels]="lineChartLabels" 
-      [options]="lineChartOptions" 
-      [chartType]="lineChartType"
-      (chartHover)="chartHovered($event)" 
-      (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-    <br>
-  <div>
-    <canvas baseChart 
-      [data]="pieChartData" 
-      [labels]="pieChartLabels" 
-      [chartType]="pieChartType" 
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
-    </canvas>
+  <div *ngIf = "isoCountries" class = "col-md-8 mx-auto">
+  <h4>Most Targeted Organizations</h4>
+  <br>
+    <div>
+      <canvas baseChart
+              [data]="polarAreaChartData"
+              [labels]="polarAreaChartLabels"
+              [legend]="polarAreaLegend"
+              [chartType]="polarAreaChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
   </div>
   <br>
-  <div class="text-center">
-    <button class="btn btn-info" (click)="changeType()">Change Type</button>
+  <br>
+  <br>
+  <div *ngIf = "isoCountries" class = "row">
+    <div class="col-md-4 mx-auto">
+        <h4>Most Common Countries</h4>
+        <br>
+        <div>
+          <canvas baseChart 
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType" 
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+      <div class = "col-md-6 mx-auto">
+        <h4>Phishing Reports by Month</h4>
+        <br>
+        <div>
+          <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions" 
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)" 
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
   </div>
+<br>
+<br>
+  <div class="col-md-8 mx-auto">
+    <div class="text-center">
+      <button class="btn btn-info" (click)="changeType()">Change Display Type</button>
+    </div>
   </div>

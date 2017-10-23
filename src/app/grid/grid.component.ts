@@ -23,30 +23,24 @@ export class GridComponent implements OnInit, OnChanges {
         this.page = [];
     }
     ngOnChanges() {
-
+        this.pageInd = 0;
+        this.page = [];
+        this.initPage();
     }
     initPage() {
         this.pageCount = Math.ceil(this.data.length / 10);
         for (let i = 0; i < 10; i++) {
+            if (this.data[i] !== undefined) {
             this.formatData(i);
             this.page.push(this.data[i]);
-        }
-    }
-    previousPage() {
-        if (this.pageInd >= 0) {
-            this.page = [];
-            if (this.pageInd > 0) { this.pageInd--; }
-            for (let i = (0 + (this.pageInd * 10)); i < (10 + (this.pageInd * 10)); i++) {
-                this.formatData(i);
-                this.page.push(this.data[i]);
             }
         }
     }
-    nextPage() {
-        if (this.pageInd <= this.pageCount ) {
-            this.page = [];
-            if (this.pageInd < this.pageCount) { this.pageInd++; }
-            for (let i = (0 + (this.pageInd * 10)); i < (10 + (this.pageInd * 10)); i++) {
+    goToPage() {
+        const p = this.pageInd - 1;
+        this.page = [];
+        for (let i = (0 + (p * 10)); i < (10 + (p * 10)); i++) {
+            if (this.data[i] !== undefined) {
                 this.formatData(i);
                 this.page.push(this.data[i]);
             }

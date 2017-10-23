@@ -1,16 +1,18 @@
+import { CounterService } from './counter.service';
 import { LocationService } from './location.service';
 import { LoadDataService } from './load-data.service';
 import { GridComponent } from './grid/grid.component';
 import { MapComponent } from './map/map.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OpaqueToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpModule} from '@angular/http';
+import { ScrollToModule } from 'ng2-scroll-to';
+
 
 
 @NgModule({
@@ -19,7 +21,6 @@ import { HttpModule} from '@angular/http';
     MapComponent,
     GridComponent,
     ChartComponent,
-    SidebarComponent
   ],
   imports: [
     HttpModule,
@@ -27,10 +28,11 @@ import { HttpModule} from '@angular/http';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDJTmEUqHDPH-jPIB8B_5_J9Q47VDlCrOo'
     }),
+    ScrollToModule.forRoot(),
     NgbModule.forRoot(),
     ChartsModule
   ],
-  providers: [LoadDataService, LocationService],
+  providers: [LoadDataService, LocationService, CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

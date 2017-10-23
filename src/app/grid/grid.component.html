@@ -18,12 +18,12 @@
             </tr>
         </tbody>
     </table>
+
     <div class= "mx-auto text-center">
-        <small> Page {{pageInd + 1}} of {{pageCount}}</small>
         <br>
-        <button class="btn" (click)="previousPage()"><-</button>
-        <button class="btn" (click)="nextPage()">-></button>
-        
+        <ngb-pagination class="pagination" [collectionSize]="data.length" [(page)]="pageInd" [maxSize]="10" (pageChange)="goToPage()" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true"></ngb-pagination>
+        <small> Page {{pageInd}} of {{pageCount}}</small>
         <br>
         <br>
     </div>

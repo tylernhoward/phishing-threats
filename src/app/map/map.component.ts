@@ -1,3 +1,4 @@
+import { LocationService } from './../location.service';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
@@ -10,18 +11,22 @@ export class MapComponent implements OnInit, OnChanges {
     initLat = 25;
     initLng = 0;
     markers: IMarker[] = [];
-    constructor() { }
+    constructor(private locationLoader: LocationService) {
+
+     }
 
     ngOnInit() {
     }
     ngOnChanges() {
-        for (let i = 0; i < this.data.length; i++) {
-            this.markers.push({ lat: this.data[i].lat, lng: this.data[i].long, target: this.data[i].target });
+        this.markers = [];
+        for (let i = 0; i < 100; i++) {
+            this.locationLoader.getLocation(this.data[i].details[0].ip_address).subscribe((dataLoc) => {
+                this.markers.push({ lat: dataLoc.latitude, lng: dataLoc.longitude, target: this.data[i].target });
+            });
         }
     }
 
     clickedMarker(index: number) {
-        console.log(this.data);
     }
 }
 

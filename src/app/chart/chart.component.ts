@@ -32,12 +32,7 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log(this.polarCount);
-    console.log(this.lineCount);
-    console.log(this.pieCount);
-
     this.initChart();
-
   }
 
   ngOnChanges() {

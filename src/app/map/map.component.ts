@@ -19,9 +19,11 @@ export class MapComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.markers = [];
         for (let i = 0; i < 100; i++) {
-            this.locationLoader.getLocation(this.data[i].details[0].ip_address).subscribe((dataLoc) => {
-                this.markers.push({ lat: dataLoc.latitude, lng: dataLoc.longitude, target: this.data[i].target });
-            });
+            if (this.data[i] !== undefined) {
+                this.locationLoader.getLocation(this.data[i].details[0].ip_address).subscribe((dataLoc) => {
+                    this.markers.push({ lat: dataLoc.latitude, lng: dataLoc.longitude, target: this.data[i].target });
+                });
+             }
         }
     }
 

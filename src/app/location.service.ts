@@ -7,6 +7,6 @@ export class LocationService {
   constructor(public http: Http) { }
 
   getLocation(ip: String) {
-    return this.http.get('http://freegeoip.net/json/' + ip).map((res: Response) => res.json());
+    return this.http.get('/api/locations/' + ip).map((res: Response) => res.json());
   }
 }

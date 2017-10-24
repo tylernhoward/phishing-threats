@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
       this.http.get('../assets/isoCountries.json').map((res: Response) => res.json()).subscribe(iso => {
         this.isoCountries = iso;
         this.formatData();
-        console.log(this.phishData);
         this.initSorter();
       });
     });

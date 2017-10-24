@@ -12,7 +12,6 @@ export class MapComponent implements OnInit, OnChanges {
     initLng = 0;
     markers: IMarker[] = [];
     constructor(private locationLoader: LocationService) {
-
      }
 
     ngOnInit() {

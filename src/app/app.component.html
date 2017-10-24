@@ -71,17 +71,15 @@
             </div>
         </div>
     </div>
-
     <div *ngIf="phishData">
-        <div class="jumbotron">
-            <app-chart [cdata] = "phishData"></app-chart>
+        <div *ngIf = "countingDone" class="jumbotron">
+            <app-chart [polarCount] ="targetCount" [pieCount] = "countryCount" [lineCount] = "dateCount"></app-chart>
         </div>
-    
+
         <div id= "grid" class="mx-auto col-md-11">
             <app-grid [data] = "phishData"></app-grid>
         </div>
     </div>
-
 
 <footer class="footer col-md-12">
     <hr>

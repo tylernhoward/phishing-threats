@@ -8,7 +8,6 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit, OnChanges {
-  @Input() cdata;
 
   // LineChart
   public lineChartData: Array<any>;
@@ -26,28 +25,26 @@ export class ChartComponent implements OnInit, OnChanges {
   public lineChartType: String = 'line';
   public pieChartType: String = 'pie';
 
-  polarCount: Array<Object>;
-  lineCount: Array<Object>;
-  pieCount: Array<Object>;
-  isoCountries: any;
-  constructor(private http: Http, public counter: CounterService) {
-    this.http.get('../assets/isoCountries.json').map((res: Response) => res.json()).subscribe(data => {
-      this.isoCountries = data;
-      this.initChart();
-    });
+  @Input() polarCount: Array<Object>;
+  @Input() lineCount: Array<Object>;
+  @Input() pieCount: Array<Object>;
+  constructor() {
   }
 
   ngOnInit() {
+    console.log(this.polarCount);
+    console.log(this.lineCount);
+    console.log(this.pieCount);
+
+    this.initChart();
 
   }
 
   ngOnChanges() {
+    this.initChart();
 
   }
   initChart() {
-    this.polarCount = this.counter.countTarget(this.cdata);
-    this.pieCount = this.counter.countCountries(this.cdata);
-    this.lineCount = this.counter.countYears(this.cdata);
     this.loadPie();
     this.loadPolar();
     this.loadLine();
@@ -65,9 +62,9 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   loadPie() {
-    this.pieChartLabels = [this.getCountryName(this.pieCount[0]['id']), this.getCountryName(this.pieCount[1]['id']),
-                            this.getCountryName(this.pieCount[2]['id']), this.getCountryName(this.pieCount[3]['id']),
-                            this.getCountryName(this.pieCount[4]['id']), this.getCountryName(this.pieCount[5]['id'])];
+    this.pieChartLabels = [(this.pieCount[0]['id']), (this.pieCount[1]['id']),
+                            (this.pieCount[2]['id']), (this.pieCount[3]['id']),
+                            (this.pieCount[4]['id']), (this.pieCount[5]['id'])];
     this.pieChartData = [this.pieCount[0]['count'], this.pieCount[1]['count'], this.pieCount[2]['count'],
                           this.pieCount[3]['count'], this.pieCount[4]['count'], this.pieCount[5]['count']];
   }
@@ -136,13 +133,6 @@ export class ChartComponent implements OnInit, OnChanges {
     this.lineChartLabels = [
       'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
     ];
-  }
-  getCountryName(countryCode) {
-    if (this.isoCountries.hasOwnProperty(countryCode)) {
-      return this.isoCountries[countryCode];
-    } else {
-      return countryCode;
-    }
   }
 
 }

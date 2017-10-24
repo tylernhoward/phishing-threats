@@ -6,11 +6,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CounterService {
   isoCountries: any;
-  constructor(private http: Http) {
-    this.http.get('../assets/isoCountries.json').map((res: Response) => res.json()).subscribe(data => {
-      this.isoCountries = data;
-    });
-  }
+  constructor() {
+    }
 
   // Counting Functions for data feed.
   countTarget(cdata: any) {
@@ -36,10 +33,10 @@ export class CounterService {
   countCountries(cdata: any) {
     const obj: Object = {};
     for (let i = 0; i < cdata.length; i++) {
-      if (!obj.hasOwnProperty(cdata[i].details[0].country)) {
-        obj[cdata[i].details[0].country] = 1;
+      if (!obj.hasOwnProperty(cdata[i].country)) {
+        obj[cdata[i].country] = 1;
       } else {
-        obj[cdata[i].details[0].country] = obj[cdata[i].details[0].country] + 1;
+        obj[cdata[i].country] = obj[cdata[i].country] + 1;
       }
     }
     const sortedArray = [];
@@ -53,7 +50,7 @@ export class CounterService {
     });
     return sortedArray;
   }
-  countYears(cdata: any) {
+  countDates(cdata: any) {
     const obj: Object = {};
     for (let i = 0; i < cdata.length; i++) {
       const date = new Date(cdata[i].verification_time);

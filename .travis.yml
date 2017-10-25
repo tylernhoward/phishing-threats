@@ -8,8 +8,6 @@ before_script:
 - npm install -g @angular/cli
 script:
 - ng build --prod
-after_script:
-- node server.js
 deploy:
   provider: heroku
   api_key:

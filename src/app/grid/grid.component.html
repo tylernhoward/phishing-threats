@@ -4,15 +4,16 @@
             <tr>
                 <th>Time</th>
                 <th>Target</th>
-                <th>Country</th>
+                <th>Reporting Country</th>
                 <th>Domain</th>
+                <th>More Info</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let v of page; let i=index">
+            <tr *ngFor = "let v of page; let i=index" >
                 <td>{{v.time | date: 'short'}}</td>
                 <td>{{v.target}}</td>
-                <td>{{v.country}}</td>
+                <td><a scrollTo scrollTargetSelector = "#map" (click) = "showMarkerFromMap(i)" href="">{{v.country}}</a></td>
                 <td>{{v.domain}}</td>
                 <td><a href="{{v.phish_detail_url}}" target = "_blank">More Info</a></td>
             </tr>

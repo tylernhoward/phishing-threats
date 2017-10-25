@@ -32,16 +32,28 @@ export class AppComponent implements OnInit {
   isoCountries: any;
 
   constructor(private http: Http, private loader: LoadDataService, public counter: CounterService) {
-    this.loader.getData().subscribe((data) => {
-      this.phishData = data;
-      this.canSearch = true;
-      this.countingDone = false;
-      this.dataHold = this.phishData;
-      this.http.get('../assets/isoCountries.json').map((res: Response) => res.json()).subscribe(iso => {
-        this.isoCountries = iso;
-        this.formatData();
-        this.initSorter();
+    if (localStorage.getItem('data') !== null) {
+      //this.phishData = JSON.parse(localStorage.getItem('data'));
+      //console.log(this.phishData);
+    } else {
+      this.loader.getData().subscribe((data) => {
+        this.phishData = data;
+        this.setUp();
+        //localStorage.clear();
+        //localStorage.setItem('data', JSON.stringify(this.phishData));
+        //console.log(this.phishData);
       });
+    }
+  }
+
+  setUp() {
+    this.canSearch = true;
+    this.countingDone = false;
+    this.dataHold = this.phishData;
+    this.http.get('../assets/isoCountries.json').map((res: Response) => res.json()).subscribe(iso => {
+      this.isoCountries = iso;
+      this.formatData();
+      this.initSorter();
     });
   }
 

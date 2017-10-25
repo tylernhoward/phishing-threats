@@ -1,3 +1,4 @@
+import { PinnerService } from './pinner.service';
 import { CounterService } from './counter.service';
 import { LocationService } from './location.service';
 import { LoadDataService } from './load-data.service';
@@ -32,7 +33,7 @@ import { ScrollToModule } from 'ng2-scroll-to';
     NgbModule.forRoot(),
     ChartsModule
   ],
-  providers: [LoadDataService, LocationService, CounterService],
+  providers: [LoadDataService, LocationService, CounterService, PinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

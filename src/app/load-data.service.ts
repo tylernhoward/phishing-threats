@@ -12,17 +12,9 @@ export class LoadDataService {
     this.jsonHeader.append('Content-Type', 'application/json');
   }
   getData() {
-    //return this.http.get('assets/phishTank.json').map((res: Response) => res.json());
-    if (localStorage['data']) {
-      this.dataIn = JSON.parse(localStorage.getItem('data'));
-      console.log(this.dataIn);
-      console.log('In local storage');
-    } else {
-      this.dataIn = this.http.get('/api/data', { headers: this.jsonHeader }).map((res: Response) => res.json());
-      localStorage.setItem('data', JSON.stringify(this.dataIn));
-      console.log(this.dataIn);
-      console.log('Calling API');
-    }
-    return this.dataIn;
+    //return 
+    //return this.http.get('/api/data', { headers: this.jsonHeader }).map((res: Response) => res.json());
+
+      return this.http.get('assets/phishTank.json').map((res: Response) => res.json());
   }
 }

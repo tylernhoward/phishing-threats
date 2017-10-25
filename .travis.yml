@@ -12,5 +12,3 @@ before_script:
 script:
    - ng build --prod
    - node server.js
-
-after_success:

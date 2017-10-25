@@ -1,3 +1,4 @@
+import { PinnerService } from './../pinner.service';
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
@@ -12,7 +13,7 @@ export class GridComponent implements OnInit, OnChanges {
     pageInd: number;
     pageCount: number;
     isoCountries: any;
-    constructor() {
+    constructor(private pinner: PinnerService) {
     }
     ngOnInit() {
         this.pageInd = 0;
@@ -39,6 +40,12 @@ export class GridComponent implements OnInit, OnChanges {
                 this.page.push(this.data[i]);
             }
         }
+    }
+    showMarkerFromMap(i: number) {
+        this.emit(this.data[i]);
+    }
+    emit(val) {
+        this.pinner.emitConfig(val);
     }
 }
 

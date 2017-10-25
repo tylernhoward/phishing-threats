@@ -1,14 +1,16 @@
 language: node_js
 node_js:
-   - "6.11.4"
-
+- 6.11.4
 branches:
-   only:
-      - master
-
+  only:
+  - master
 before_script:
-   - npm install -g @angular/cli
-
+- npm install -g @angular/cli
 script:
-   - ng build --prod
-   - node server.js
+- ng build --prod
+after_script:
+- node server.js
+deploy:
+  provider: heroku
+  api_key:
+    secure: FIerLC1eIW1B8kAFXm9afbISOi34CU83bUWRI4U0SGCdJOwzHaIG1Ltlr1YfGwazcQUcgtS4jFcImfKUItvxKgkKrCU4bju+kWLtiLPAgDWv1vOesOijGkDkJ7VCslTo9WBSDIu9arm9LGoUNcUalGLSrTjbddYNu1lXEyt3lokVcjGtEuuL+++Qs2wF5f3EuBg+dMPrDymV+rhAua0IrchIiGnfGFpWFJucwhmY9FTmILog0swWM8GbkFHS4dRiMjmVlIz5JX/+rTWgXveXbG9Ky6urdqMrSwQArJXP+s4nEKx5dF/dPkChuhOI/djuQ/xgxVbMfs1WaPP/EC9CNH+oIWq4w7FG/Q+QyuYwxnj+I8hrulcuz8AL7wzciiZUjF7zH29kqZzuv9HPpt3JofmS5qmiPux+G8AaGJN0NGs1cjTkst553D6V2P8bKmQlye3YYXmgqK+0kVk3tj9bs0G4Dnoi+Jr4v7aYSMO5CG+braFd4oqlM9wsfu1ysg/rrlvTdCYXYAAfr/SvVWjgFPi0lWZpILv1YtZ+86/XCKPfxZOqB79Ugoor/whApCPomEsb7kZYWys/IAVpUTAEom9a/zxe9vT4cUeT3ymemS/6Rwb8si2cAEbe4xiDWMaQVvt5qVMPSshR/mzQjD5J4V1rm9KblozkA/TIoEXuzfA=

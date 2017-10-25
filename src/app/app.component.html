@@ -67,6 +67,24 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <div class="row">
+                                        <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
+                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
+                                            <div ngbDropdownMenu aria-labelledby="monthDropdown">
+                                                <button *ngFor="let month of months" class="dropdown-item" (click)="selectMonth(month)">{{month.s}}</button>
+                                            </div>
+                                        </div>
+                                        <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
+                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
+                                            <div ngbDropdownMenu aria-labelledby="yearDropdown">
+                                                <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="monthSelect || yearSelect" class="col-md-4">
+                                            <p>{{monthSelect.s}}&nbsp;{{yearSelect}}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <button class="btn btn-danger" style = "margin: 10px;" [disabled]="canSearch" (click)="resetFilters()">Reset All</button>
                                     <button class="btn btn-success" style = "margin: 10px;" [disabled]="!canSearch" (click)="filterData()">Search</button>
                             </div>

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <app-map id= "map" [data]="phishData"></app-map>
-                    <button scrollTo scrollTargetSelector = "#grid" [disabled]="canSearch || noResults" class="btn btn-block btn-info" id="seeDataBtn">See Data</button>
+                    <button scrollTo scrollTargetSelector = "#grid" class="btn btn-block btn-info" id="seeDataBtn">See Data</button>
 
                 </div>
                 <div class="col-md-4 mx-auto">
@@ -24,6 +24,7 @@
                             </div>
                             <div class="card-body">
                                 <p>{{description}}</p>
+                                <p>The map is showing {{mapDesc}}</p>
                             </div>
                         </div>
                         <br>
@@ -38,13 +39,13 @@
                                     </div>
                                     <div class = "row">
                                         <div ngbDropdown class = "col-md-4" style ="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="targetDropdown" ngbDropdownToggle>Targets</button>
+                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="targetDropdown" ngbDropdownToggle>Targets</button>
                                             <div ngbDropdownMenu aria-labelledby="targetDropdown">
-                                                <button *ngFor = "let target of targets" class="dropdown-item" (click) = "selectTarget(target)">{{target}}</button>
+                                                <button *ngFor = "let target of targets" class="dropdown-item" (click) = "selectTarget(target)" [innerHTML] = "target"></button>
                                             </div>
                                         </div>
                                         <div *ngIf = "targetSelect" class="col-md-6">
-                                            <p>{{targetSelect}}</p>
+                                            <p [innerHTML] = "targetSelect"></p>
                                         </div>
                                         <div *ngIf = "!targetSelect" class="col-md-6">
                                             <p>Select a target</p>
@@ -54,7 +55,7 @@
                                     <div class="row">
 
                                         <div ngbDropdown class= "col-md-4" style ="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="countryDropdown" ngbDropdownToggle>Country</button>
+                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="countryDropdown" ngbDropdownToggle>Country</button>
                                             <div ngbDropdownMenu aria-labelledby="countryDropdown">
                                                 <button *ngFor="let country of countries" class="dropdown-item" (click) = "selectCountry(country)">{{country}}</button>
                                             </div>     
@@ -69,18 +70,18 @@
                                     <hr>
                                     <div class="row">
                                         <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
+                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
                                             <div ngbDropdownMenu aria-labelledby="monthDropdown">
                                                 <button *ngFor="let month of months" class="dropdown-item" (click)="selectMonth(month)">{{month.s}}</button>
                                             </div>
                                         </div>
                                         <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
+                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
                                             <div ngbDropdownMenu aria-labelledby="yearDropdown">
                                                 <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
                                             </div>
                                         </div>
-                                        <div *ngIf="monthSelect || yearSelect" class="col-md-4">
+                                        <div *ngIf="monthSelect || yearSelect" class="col-md-6">
                                             <p>{{monthSelect.s}}&nbsp;{{yearSelect}}</p>
                                         </div>
                                     </div>

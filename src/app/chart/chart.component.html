@@ -6,6 +6,7 @@
               [data]="polarAreaChartData"
               [labels]="polarAreaChartLabels"
               [legend]="polarAreaLegend"
+              [colors] ="polarAreaChartColors"
               [chartType]="polarAreaChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)">
@@ -24,6 +25,7 @@
             [data]="pieChartData" 
             [labels]="pieChartLabels" 
             [chartType]="pieChartType" 
+            [colors] ="pieChartColors"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">
           </canvas>

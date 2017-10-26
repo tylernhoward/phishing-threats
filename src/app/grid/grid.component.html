@@ -12,7 +12,7 @@
         <tbody>
             <tr *ngFor = "let v of page; let i=index" >
                 <td>{{v.time | date: 'short'}}</td>
-                <td>{{v.target}}</td>
+                <td [innerHTML] = "v.target"></td>
                 <td><a scrollTo scrollTargetSelector = "#map" (click) = "showMarkerFromMap(i)" href="">{{v.country}}</a></td>
                 <td>{{v.domain}}</td>
                 <td><a href="{{v.phish_detail_url}}" target = "_blank">More Info</a></td>

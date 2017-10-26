@@ -7,7 +7,7 @@ export class PinnerService {
 
   constructor() { }
 
-  emitConfig(val) {
+  emit(val) {
     this.pinObservable.next(val);
   }
 }

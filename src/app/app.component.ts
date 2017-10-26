@@ -1,7 +1,7 @@
 import { Http, Response } from '@angular/http';
-import { CounterService } from './counter.service';
-import { LocationService } from './location.service';
-import { LoadDataService } from './load-data.service';
+import { CounterService } from './services/counter.service';
+import { LocationService } from './services/location.service';
+import { LoadDataService } from './services/load-data.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   dataHold: any;
   isoCountries: any;
 
-  constructor(private http: Http, private loader: LoadDataService, public counter: CounterService) {
+  constructor(private http: Http, private loader: LoadDataService, private counter: CounterService) {
     if (localStorage.getItem('data') !== null) {
       //this.phishData = JSON.parse(localStorage.getItem('data'));
       //console.log(this.phishData);
@@ -66,9 +66,8 @@ export class AppComponent implements OnInit {
 
   }
   setDesc() {
-    this.description = 'This is a visualization of all currently active phishing threats as reported by PhishTank.\n' +
-      'Click on entries in the grid to show their location on the map.\n';
-
+    this.description = 'This is a visualization of all currently active phishing threats as reported by PhishTank.';
+    this.mapDesc = 'the unique locations of the last 100 reported IP addresses.';
   }
   formatData() {
     for (let i = 0; i < this.phishData.length; i++) {
@@ -97,6 +96,7 @@ export class AppComponent implements OnInit {
   }
 
   resetFilters() {
+    this.setDesc();
     this.canSearch = true;
     this.noResults = false;
     this.phishData = this.dataHold;
@@ -163,14 +163,13 @@ export class AppComponent implements OnInit {
     if (this.sortedData.length === 0) {
       this.noResults = true;
     } else {
+      this.mapDesc = 'the unique locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
       this.phishData = this.sortedData;
-      console.log(this.phishData);
     }
   }
   initSorter() {
     this.targets = [];
     this.countries = [];
-    this.years = ['2015', '2016', '2017'];
     this.months = [{ 's': 'January', 'n': 0} , { 's': 'February', 'n': 1} , { 's': 'March', 'n': 2} ,
                     { 's': 'April', 'n': 3} , { 's': 'May', 'n': 4} , { 's': 'June', 'n': 5} ,
                      { 's': 'July', 'n': 6} , { 's': 'August', 'n': 7} , { 's': 'September', 'n': 8},
@@ -189,6 +188,10 @@ export class AppComponent implements OnInit {
     this.countries.sort().splice(0, 1); // Will be "no country"
     this.sortByDate();
     this.dateCount = this.counter.countDates(this.phishData);
+    const yearHigh = this.dateCount[0]['id'].substring(0, 4);
+    this.years = [yearHigh, String(yearHigh - 1), String(yearHigh - 2)];
+
+
     this.countingDone = true;
     }
 

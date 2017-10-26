@@ -61,10 +61,15 @@ export class CounterService {
         obj[prop] = obj[prop] + 1;
       }
     }
-    const sortedArray = Object.keys(obj).map(function (key) {
-      return { 'id': key, 'count': obj[key] };
+    const sortedArray = [];
+    for (const data in obj) {
+      if (data !== null) {
+        sortedArray.push({ 'id': data, 'count': obj[data] });
+      }
+    }
+    sortedArray.sort(function (a, b) {
+      return a['id'] - b['id'];
     });
-    sortedArray.sort().reverse();
     return sortedArray;
   }
 }

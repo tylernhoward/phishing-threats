@@ -1,4 +1,4 @@
-import { PinnerService } from './../pinner.service';
+import { PinnerService } from './../services/pinner.service';
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
@@ -45,7 +45,7 @@ export class GridComponent implements OnInit, OnChanges {
         this.emit(this.data[i]);
     }
     emit(val) {
-        this.pinner.emitConfig(val);
+        this.pinner.emit(val);
     }
 }
 

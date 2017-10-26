@@ -1,5 +1,5 @@
-import { PinnerService } from './../pinner.service';
-import { LocationService } from './../location.service';
+import { PinnerService } from './../services/pinner.service';
+import { LocationService } from './../services/location.service';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
@@ -17,7 +17,6 @@ export class MapComponent implements OnInit, OnChanges {
         this.pinner.pinObservable.subscribe(value => {
             this.pinMark = value;
             this.pin();
-            console.log(this.pinMark);
         });
      }
 

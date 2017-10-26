@@ -1,7 +1,7 @@
-import { PinnerService } from './pinner.service';
-import { CounterService } from './counter.service';
-import { LocationService } from './location.service';
-import { LoadDataService } from './load-data.service';
+import { PinnerService } from './services/pinner.service';
+import { CounterService } from './services/counter.service';
+import { LocationService } from './services/location.service';
+import { LoadDataService } from './services/load-data.service';
 import { GridComponent } from './grid/grid.component';
 import { MapComponent } from './map/map.component';
 import { BrowserModule } from '@angular/platform-browser';

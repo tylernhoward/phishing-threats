@@ -1,4 +1,4 @@
-import { CounterService } from './../counter.service';
+import { CounterService } from './../services/counter.service';
 import { Http, Response } from '@angular/http';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
@@ -10,16 +10,24 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 export class ChartComponent implements OnInit, OnChanges {
 
   // LineChart
-  public lineChartData: Array<any>;
+  public lineChartData: Array<any> = [];
   public lineChartLabels: Array<any>;
   // PolarArea
-  public polarAreaChartLabels: string[];
-  public polarAreaChartData: number[];
+  public polarAreaChartLabels: string[] = [];
+  public polarAreaChartData: number[]= [];
   public polarAreaLegend: Boolean = true;
 
+  public polarAreaChartColors: Array<any> = [{
+    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)',
+                      'rgba(247, 70, 74, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(166, 70, 224, 0.6)']}];
+
   // Pie
-  public pieChartLabels: String[];
-  public pieChartData: number[];
+  public pieChartLabels: String[] = [];
+  public pieChartData: number[] = [];
+  public pieChartColors: Array<any> = [{
+    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)',
+      'rgba(247, 70, 74, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(166, 70, 224, 0.6)']}];
+
 
   public polarAreaChartType: String = 'polarArea';
   public lineChartType: String = 'line';
@@ -36,8 +44,6 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.initChart();
-
   }
   initChart() {
     this.loadPie();
@@ -57,74 +63,40 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   loadPie() {
-    this.pieChartLabels = [(this.pieCount[0]['id']), (this.pieCount[1]['id']),
-                            (this.pieCount[2]['id']), (this.pieCount[3]['id']),
-                            (this.pieCount[4]['id']), (this.pieCount[5]['id'])];
-    this.pieChartData = [this.pieCount[0]['count'], this.pieCount[1]['count'], this.pieCount[2]['count'],
-                          this.pieCount[3]['count'], this.pieCount[4]['count'], this.pieCount[5]['count']];
+    for (let i = 0; i < 6; i++) {
+      this.pieChartLabels.push(this.pieCount[i]['id']);
+      this.pieChartData.push(this.pieCount[i]['count']);
+    }
   }
-  loadPolar() {
-    this.polarAreaChartLabels = [this.polarCount[1]['id'], this.polarCount[2]['id'], this.polarCount[3]['id'],
-                           this.polarCount[4]['id'], this.polarCount[5]['id'], this.polarCount[6]['id']];
-    this.polarAreaChartData = [this.polarCount[1]['count'], this.polarCount[2]['count'], this.polarCount[3]['count'],
-                         this.polarCount[4]['count'], this.polarCount[5]['count'], this.polarCount[6]['count']];
 
+  loadPolar() {
+    for (let i = 1; i < 7; i++) {
+      this.polarAreaChartLabels.push(this.polarCount[i]['id']);
+      this.polarAreaChartData.push(this.polarCount[i]['count']);
+    }
   }
   loadLine() {
-    this.lineChartData = [
-      {
-        data: [
-          this.lineCount.find(x => x['id'] === '2017 0')['count'],
-          this.lineCount.find(x => x['id'] === '2017 1')['count'],
-          this.lineCount.find(x => x['id'] === '2017 2')['count'],
-          this.lineCount.find(x => x['id'] === '2017 3')['count'],
-          this.lineCount.find(x => x['id'] === '2017 4')['count'],
-          this.lineCount.find(x => x['id'] === '2017 5')['count'],
-          this.lineCount.find(x => x['id'] === '2017 6')['count'],
-          this.lineCount.find(x => x['id'] === '2017 7')['count'],
-          this.lineCount.find(x => x['id'] === '2017 8')['count'],
-          this.lineCount.find(x => x['id'] === '2017 9')['count']
-          // this.lineCount.find(x => x['id'] === '2017 10')['count'],
-          // this.lineCount.find(x => x['id'] === '2017 11')['count']
-        ],
-        label: '2017'
-      },
-      {
-        data: [
-          this.lineCount.find(x => x['id'] === '2016 0')['count'],
-          this.lineCount.find(x => x['id'] === '2016 1')['count'],
-          this.lineCount.find(x => x['id'] === '2016 2')['count'],
-          this.lineCount.find(x => x['id'] === '2016 3')['count'],
-          this.lineCount.find(x => x['id'] === '2016 4')['count'],
-          this.lineCount.find(x => x['id'] === '2016 5')['count'],
-          this.lineCount.find(x => x['id'] === '2016 6')['count'],
-          this.lineCount.find(x => x['id'] === '2016 7')['count'],
-          this.lineCount.find(x => x['id'] === '2016 8')['count'],
-          this.lineCount.find(x => x['id'] === '2016 9')['count'],
-          this.lineCount.find(x => x['id'] === '2016 10')['count'],
-          this.lineCount.find(x => x['id'] === '2016 11')['count']
-        ],
-        label: '2016'
-      },
-      {
-        data: [
-          this.lineCount.find(x => x['id'] === '2015 0')['count'],
-          this.lineCount.find(x => x['id'] === '2015 1')['count'],
-          this.lineCount.find(x => x['id'] === '2015 2')['count'],
-          this.lineCount.find(x => x['id'] === '2015 3')['count'],
-          this.lineCount.find(x => x['id'] === '2015 4')['count'],
-          this.lineCount.find(x => x['id'] === '2015 5')['count'],
-          this.lineCount.find(x => x['id'] === '2015 6')['count'],
-          this.lineCount.find(x => x['id'] === '2015 7')['count'],
-          this.lineCount.find(x => x['id'] === '2015 8')['count'],
-          this.lineCount.find(x => x['id'] === '2015 9')['count'],
-          this.lineCount.find(x => x['id'] === '2015 10')['count'],
-          this.lineCount.find(x => x['id'] === '2015 11')['count']
-        ],
-        label: '2015'
-      },
+    this.lineChartData.push({ data: [], label: '' }, { data: [], label: '' }, { data: [], label: '' });
+    const yHigh = this.lineCount[0]['id'].substring(0, 4);
+    const yLow = yHigh - 2;
+    for (let i = 0; i < this.lineCount.length; i++) {
+      if (this.lineCount[i]['id'].substring(0, 4) === String(yLow - 1)) {
+        break;
+      } else
+      if (this.lineCount[i]['id'].substring(0, 4) === yHigh) {
+        this.lineChartData[0]['data'].unshift(this.lineCount[i]['count']);
+      } else
+      if (this.lineCount[i]['id'].substring(0, 4) === String(yHigh - 1)) {
+        this.lineChartData[1]['data'].unshift(this.lineCount[i]['count']);
+      } else
+      if (this.lineCount[i]['id'].substring(0, 4) === String(yLow)) {
+        this.lineChartData[2]['data'].unshift(this.lineCount[i]['count']);
+      }
+    }
+    this.lineChartData[0]['label'] = yHigh;
+    this.lineChartData[1]['label'] = yHigh - 1;
+    this.lineChartData[2]['label'] = yLow;
 
-    ];
     this.lineChartLabels = [
       'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
     ];

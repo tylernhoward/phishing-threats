@@ -17,7 +17,7 @@
                 <td [innerHTML] = "v.target"></td>
                 <td>{{v.country}}</td>
                 <td>{{v.domain}}</td>
-                <td><button class = "btn btn-sm btn-outline-primary" scrollTo scrollTargetSelector="#map" title="Show location of IP address on map" (click)="showMarkerFromMap(i)">&nbsp;&#8673;&nbsp;</button></td>
+                <td><button class = "btn btn-sm btn-outline-primary" scrollTo scrollTargetSelector="#map" title="Show location of IP address on map" (click)="showMarkerOnMap(i)">&nbsp;&#8673;&nbsp;</button></td>
                 <td><button class = "btn btn-md btn-outline-primary"><a title="External link to PhishTank" href="{{v.phish_detail_url}}" target = "_blank" style="color:inherit;text-decoration:none; ">More Info</a></button></td>
             </tr>
         </tbody>

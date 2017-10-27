@@ -2,106 +2,102 @@
     <a class="navbar-brand" href="#">{{title}}</a>
 </nav>
 <br>
-<div *ngIf = "!phishData" class="container text-center">
-    <div class = "mx-auto loader"></div>
+<div *ngIf="!phishData" class="container text-center">
+    <div class="mx-auto loader"></div>
     <p>Loading data from PhishTank</p>
     <small>This will only take a moment</small>
+    <br>
 </div>
-    <div *ngIf = "phishData">
-        <div class="container-fluid" style="margin-bottom: 50px;">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <app-map id= "map" [data]="phishData"></app-map>
-                    <button scrollTo scrollTargetSelector = "#grid" class="btn btn-block btn-info" id="seeDataBtn">See Data</button>
-                    <small class = "text-center">Note that the map is of locations of IP addresses. The country reported can differ from the actual location the site is hosted.</small>
+<div *ngIf="phishData">
+    <div class="container-fluid" style="margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <app-map id="map" [data]="phishData"></app-map>
+                <button scrollTo scrollTargetSelector="#grid" class="btn btn-block btn-info" id="seeDataBtn">See Data</button>
+                <small class="text-center">Note that the map shows locations of IP addresses. The country reported can differ from the actual location the site is hosted.</small>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <div class="card border-success">
+                    <div class="card-heading">
+                        <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Description</p>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <p>{{description}}</p>
+                        <p>The map is showing {{mapDesc}}</p>
+                    </div>
                 </div>
-                <div class="col-md-4 mx-auto">
-                        <div class="card border-success">
-                            <div class="card-heading">
-                                <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Description</p>
-                                <hr>
+                <br>
+                <div class="card border-info">
+                    <div class="card-heading">
+                        <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Filters</p>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="noResults" class="text-center alert alert-warning">
+                            <p>No results</p>
+                        </div>
+                        <div class="row">
+                            <div ngbDropdown class="col-md-4" style="margin-bottom: 5px;">
+                                <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="targetDropdown" ngbDropdownToggle>Targets</button>
+                                <div ngbDropdownMenu aria-labelledby="targetDropdown">
+                                    <button *ngFor="let target of targets" class="dropdown-item" (click)="selectTarget(target)" [innerHTML]="target"></button>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p>{{description}}</p>
-                                <p>The map is showing {{mapDesc}}</p>
+                            <div *ngIf="targetSelect" class="col-md-8">
+                                <p [innerHTML]="targetSelect"></p>
+                            </div>
+                            <div *ngIf="!targetSelect" class="col-md-8">
+                                <p>Select a target</p>
                             </div>
                         </div>
-                        <br>
-                        <div class="card border-info">
-                            <div class="card-heading">
-                                <p class="text-center card-text" style="margin-top:5px;margin-bottom:0;">Filters</p>
-                                <hr>
+                        <hr>
+                        <div class="row">
+                            <div ngbDropdown class="col-md-4" style="margin-bottom: 5px;">
+                                <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="countryDropdown" ngbDropdownToggle>Country</button>
+                                <div ngbDropdownMenu aria-labelledby="countryDropdown">
+                                    <button *ngFor="let country of countries" class="dropdown-item" (click)="selectCountry(country)">{{country}}</button>
+                                </div>
                             </div>
-                            <div class="card-body">        
-                                    <div *ngIf="noResults" class="text-center alert alert-warning">
-                                        <p>No results</p>
-                                    </div>
-                                    <div class = "row">
-                                        <div ngbDropdown class = "col-md-4" style ="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="targetDropdown" ngbDropdownToggle>Targets</button>
-                                            <div ngbDropdownMenu aria-labelledby="targetDropdown">
-                                                <button *ngFor = "let target of targets" class="dropdown-item" (click) = "selectTarget(target)" [innerHTML] = "target"></button>
-                                            </div>
-                                        </div>
-                                        <div *ngIf = "targetSelect" class="col-md-6">
-                                            <p [innerHTML] = "targetSelect"></p>
-                                        </div>
-                                        <div *ngIf = "!targetSelect" class="col-md-6">
-                                            <p>Select a target</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div ngbDropdown class= "col-md-4" style ="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="countryDropdown" ngbDropdownToggle>Country</button>
-                                            <div ngbDropdownMenu aria-labelledby="countryDropdown">
-                                                <button *ngFor="let country of countries" class="dropdown-item" (click) = "selectCountry(country)">{{country}}</button>
-                                            </div>     
-                                        </div>
-                                        <div *ngIf="countrySelect" class="col-md-6">
-                                            <p>{{countrySelect}}</p>
-                                        </div>
-                                        <div *ngIf="!countrySelect" class="col-md-6">
-                                            <p>Select a country</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
-                                            <div ngbDropdownMenu aria-labelledby="monthDropdown">
-                                                <button *ngFor="let month of months" class="dropdown-item" (click)="selectMonth(month)">{{month.s}}</button>
-                                            </div>
-                                        </div>
-                                        <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
-                                            <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
-                                            <div ngbDropdownMenu aria-labelledby="yearDropdown">
-                                                <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
-                                            </div>
-                                        </div>
-                                        <div *ngIf="monthSelect || yearSelect" class="col-md-6">
-                                            <p>{{monthSelect.s}}&nbsp;{{yearSelect}}</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <button class="btn btn-danger" style = "margin: 10px;" [disabled]="canSearch" (click)="resetFilters()">Reset All</button>
-                                    <button class="btn btn-success" style = "margin: 10px;" [disabled]="!canSearch" (click)="filterData()">Search</button>
+                            <div *ngIf="countrySelect" class="col-md-8">
+                                <p>{{countrySelect}}</p>
+                            </div>
+                            <div *ngIf="!countrySelect" class="col-md-8">
+                                <p>Select a country</p>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div ngbDropdown class="col-md-2" style="margin-bottom: 5px;">
+                                <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
+                                <div ngbDropdownMenu aria-labelledby="monthDropdown">
+                                    <button *ngFor="let month of months" class="dropdown-item" (click)="selectMonth(month)">{{month.s}}</button>
+                                </div>
+                            </div>
+                            <div ngbDropdown class="col-md-2" style="margin-bottom: 5px;">
+                                <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
+                                <div ngbDropdownMenu aria-labelledby="yearDropdown">
+                                    <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
+                                </div>
+                            </div>
+                            <div *ngIf="monthSelect || yearSelect" class="col-md-8">
+                                <p>{{monthSelect.s}}&nbsp;{{yearSelect}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="btn btn-danger" style="margin: 10px;" [disabled]="canSearch" (click)="resetFilters()">Reset All</button>
+                        <button class="btn btn-success" style="margin: 10px;" [disabled]="!canSearch" (click)="filterData()">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="phishData">
-        <div *ngIf = "countingDone" class="jumbotron">
-            <app-chart [polarCount] ="targetCount" [pieCount] = "countryCount" [lineCount] = "dateCount"></app-chart>
-        </div>
-
-        <div id= "grid" class="mx-auto col-md-11">
-            <app-grid [data] = "phishData"></app-grid>
-        </div>
+</div>
+<div *ngIf="phishData">
+    <div *ngIf="countingDone" class="jumbotron">
+        <app-chart [polarCount]="targetCount" [pieCount]="countryCount" [lineCount]="dateCount"></app-chart>
     </div>
-
-
-
-
+    <div id="grid" class="mx-auto col-md-11">
+        <app-grid [data]="phishData"></app-grid>
+    </div>
+</div>

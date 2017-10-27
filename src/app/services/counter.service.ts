@@ -7,9 +7,10 @@ import { Injectable } from '@angular/core';
 export class CounterService {
   isoCountries: any;
   constructor() {
-    }
+  }
 
-  // Counting Functions for data feed.
+  // Counting Functions for data feed
+  // Builds JSON then converts to sorted Array
   countTarget(cdata: any) {
     const obj: Object = {};
     for (let i = 0; i < cdata.length; i++) {
@@ -19,17 +20,13 @@ export class CounterService {
         obj[cdata[i].target] = obj[cdata[i].target] + 1;
       }
     }
-    const sortedArray = [];
-    for (const data in obj) {
-      if (data !== null) {
-        sortedArray.push({ 'id': data, 'count': obj[data] });
-      }
-    }
+    const sortedArray = this.convertCountToArray(obj);
     sortedArray.sort(function (a, b) {
       return b['count'] - a['count'];
     });
     return sortedArray;
   }
+
   countCountries(cdata: any) {
     const obj: Object = {};
     for (let i = 0; i < cdata.length; i++) {
@@ -39,17 +36,13 @@ export class CounterService {
         obj[cdata[i].country] = obj[cdata[i].country] + 1;
       }
     }
-    const sortedArray = [];
-    for (const data in obj) {
-      if (data !== null) {
-        sortedArray.push({ 'id': data, 'count': obj[data] });
-      }
-    }
+    const sortedArray = this.convertCountToArray(obj);
     sortedArray.sort(function (a, b) {
       return b['count'] - a['count'];
     });
     return sortedArray;
   }
+
   countDates(cdata: any) {
     const obj: Object = {};
     for (let i = 0; i < cdata.length; i++) {
@@ -61,16 +54,21 @@ export class CounterService {
         obj[prop] = obj[prop] + 1;
       }
     }
-    const sortedArray = [];
-    for (const data in obj) {
-      if (data !== null) {
-        sortedArray.push({ 'id': data, 'count': obj[data] });
-      }
-    }
+    const sortedArray = this.convertCountToArray(obj);
     sortedArray.sort(function (a, b) {
       return a['id'] - b['id'];
     });
     return sortedArray;
+  }
+
+  convertCountToArray(o: any) {
+    const arr = [];
+    for (const data in o) {
+      if (data !== null) {
+        arr.push({ 'id': data, 'count': o[data] });
+      }
+    }
+    return arr;
   }
 }
 

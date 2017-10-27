@@ -1,54 +1,39 @@
-  <div class = "col-md-8 mx-auto">
+<div class="col-md-8 mx-auto">
   <h4>Most Targeted Organizations</h4>
   <br>
+  <div>
+    <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [colors]="polarAreaChartColors"
+      [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <h4>Most Common Countries of Origin</h4>
+    <br>
     <div>
-      <canvas baseChart
-              [data]="polarAreaChartData"
-              [labels]="polarAreaChartLabels"
-              [legend]="polarAreaLegend"
-              [colors] ="polarAreaChartColors"
-              [chartType]="polarAreaChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
+      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="pieChartColors" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
       </canvas>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <div class = "row">
-    <div class="col-md-6 mx-auto">
-        <h4>Most Common Countries of Origin</h4>
-        <br>
-        <div>
-          <canvas baseChart 
-            [data]="pieChartData" 
-            [labels]="pieChartLabels" 
-            [chartType]="pieChartType" 
-            [colors] ="pieChartColors"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-      </div>
-      <div class = "col-md-6 mx-auto">
-        <h4>Currently Online Phishing Sites by Month Reported</h4>
-        <br>
-        <div>
-          <canvas baseChart 
-            [datasets]="lineChartData" 
-            [labels]="lineChartLabels" 
-            [chartType]="lineChartType"
-            (chartHover)="chartHovered($event)" 
-            (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-      </div>
-  </div>
-<br>
-<br>
-  <div class="col-md-8 mx-auto">
-    <div class="text-center">
-      <button class="btn btn-info" (click)="changeType()">Change Display Type</button>
+  <div class="col-md-6 mx-auto">
+    <h4>Currently Online Phishing Sites by Month Reported</h4>
+    <br>
+    <div>
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+      </canvas>
     </div>
   </div>
+</div>
+<br>
+<br>
+<div class="col-md-8 mx-auto">
+  <div class="text-center">
+    <button class="btn btn-info" (click)="changeType()">Change Display Type</button>
+  </div>
+</div>

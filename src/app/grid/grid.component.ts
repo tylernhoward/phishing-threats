@@ -1,3 +1,4 @@
+import { IVulnerabilities } from './../interfaces/IVulnerabilities';
 import { PinnerService } from './../services/pinner.service';
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Http, Response } from '@angular/http';
@@ -12,9 +13,8 @@ export class GridComponent implements OnInit, OnChanges {
     page: IVulnerabilities[];
     pageInd: number;
     pageCount: number;
-    isoCountries: any;
-    constructor(private pinner: PinnerService) {
-    }
+
+    constructor(private pinner: PinnerService) { }
     ngOnInit() {
         this.pageInd = 0;
         this.page = [];
@@ -41,11 +41,8 @@ export class GridComponent implements OnInit, OnChanges {
             }
         }
     }
-    showMarkerFromMap(i: number) {
-        this.emit(this.data[i]);
-    }
-    emit(val) {
-        this.pinner.emit(val);
+    showMarkerOnMap(i: number) {
+        this.pinner.emit(this.data[i]);
     }
 }
 

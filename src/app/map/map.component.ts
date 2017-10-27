@@ -1,3 +1,4 @@
+import { IMarker } from './../interfaces/IMarker';
 import { PinnerService } from './../services/pinner.service';
 import { LocationService } from './../services/location.service';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
@@ -13,15 +14,14 @@ export class MapComponent implements OnInit, OnChanges {
     initLng = 0;
     pinMark: any;
     markers: IMarker[] = [];
-    constructor(private locationLoader: LocationService, private pinner: PinnerService) {
+    constructor(private locationLoader: LocationService, private pinner: PinnerService) { }
+    ngOnInit() {
         this.pinner.pinObservable.subscribe(value => {
             this.pinMark = value;
             this.pin();
         });
-     }
-
-    ngOnInit() {
     }
+    // clickedMarker(index: number) { }
     ngOnChanges() {
         this.markers = [];
         for (let i = 0; i < 100; i++) {
@@ -37,8 +37,6 @@ export class MapComponent implements OnInit, OnChanges {
         this.locationLoader.getLocation(this.pinMark.details[0].ip_address).subscribe((dataLoc) => {
             this.markers.push({ lat: dataLoc.latitude, lng: dataLoc.longitude, target: this.pinMark.target });
         });
-    }
-    clickedMarker(index: number) {
     }
 }
 

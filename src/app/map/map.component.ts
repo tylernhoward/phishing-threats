@@ -37,9 +37,7 @@ export class MapComponent implements OnInit, OnChanges {
         this.locationLoader.getLocation(this.pinMark.details[0].ip_address).subscribe((dataLoc) => {
             this.markers.push({ lat: dataLoc.latitude, lng: dataLoc.longitude, target: this.pinMark.target });
         });
-
     }
-
     clickedMarker(index: number) {
     }
 }

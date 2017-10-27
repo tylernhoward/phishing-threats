@@ -1,4 +1,4 @@
-<agm-map [zoom]="2" [minZoom]="2" [maxZoom]="15" [streetViewControl]="false" [latitude]="initLat" [longitude]="initLng">
+<agm-map [zoom]="2" [minZoom]="1" [maxZoom]="15" [streetViewControl]="false" [latitude]="initLat" [longitude]="initLng">
     <agm-marker *ngFor="let m of markers; let i=index" [latitude]="m.lat" [longitude]="m.lng" (markerClick)="clickedMarker(i)">
         <agm-info-window>{{m.target}}</agm-info-window>
     </agm-marker>

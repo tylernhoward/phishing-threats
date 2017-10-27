@@ -128,44 +128,47 @@ export class AppComponent implements OnInit {
     const y = this.yearSelect;
 
     this.canSearch = false;
-    if (t === '' && c === '' && m === '' && y === '') {
+    if (!t && !c && !m && !y) {
       this.canSearch = true;
     }
     this.noResults = false;
-    this.sortedData = [];
-    this.sortedData = this.phishData.filter(function (item) {
-      if (t && c ) {
-        return (item.target === t) && (item.country === c);
-      } else
-      if (t && !c) {
-        return (item.target === t);
-      } else
-      if (!t && c) {
-        return (item.country === c);
-      } else {
-        return item;
-      }
-    });
-    this.sortedData = this.sortedData.filter(function (item) {
-      const d = new Date(item.verification_time);
-      if (m && y) {
-        return (d.getMonth() === m) && (d.getFullYear().toString() === y);
-      } else
-      if (m && !y) {
-         return (d.getMonth() === m);
-      } else
-      if (!m && y) {
-         return (d.getFullYear().toString() === y);
-      } else {
-         return item;
-      }
-    });
-    if (this.sortedData.length === 0) {
-      this.noResults = true;
-    } else {
-      this.mapDesc = 'the unique locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
-      this.phishData = this.sortedData;
+    if (this.canSearch === false) {
+      this.sortedData = [];
+      this.sortedData = this.phishData.filter(function (item) {
+        if (t && c ) {
+          return (item.target === t) && (item.country === c);
+        } else
+        if (t && !c) {
+          return (item.target === t);
+        } else
+        if (!t && c) {
+          return (item.country === c);
+        } else {
+          return item;
+        }
+      });
+      this.sortedData = this.sortedData.filter(function (item) {
+        const d = new Date(item.verification_time);
+        if (m && y) {
+          return (d.getMonth() === m) && (d.getFullYear().toString() === y);
+        } else
+        if (m && !y) {
+          return (d.getMonth() === m);
+        } else
+        if (!m && y) {
+          return (d.getFullYear().toString() === y);
+        } else {
+          return item;
+        }
+      });
+    
+     if (this.sortedData.length === 0) {
+       this.noResults = true;
+     } else {
+        this.mapDesc = 'the unique locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
+        this.phishData = this.sortedData;
     }
+  }
   }
   initSorter() {
     this.targets = [];

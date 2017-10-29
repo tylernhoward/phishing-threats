@@ -1,12 +1,7 @@
-import { PinnerStub } from './../pinner.stub';
-import { LocationStub } from '.././location.stub';
+import { PinnerStub } from './../mocks/pinner.stub';
 import { Observable } from 'rxjs/Observable';
-import { DataStub } from '.././data.stub';
-import { phishMock1, phishMock2, phishMocks, ipMock } from '.././data.mock';
+import { phishMock1, phishMock2, phishMocks, ipMock } from '.././mocks/data.mock';
 import { PinnerService } from '.././services/pinner.service';
-import { CounterService } from '.././services/counter.service';
-import { LocationService } from '.././services/location.service';
-import { LoadDataService } from '.././services/load-data.service';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToModule } from 'ng2-scroll-to';
@@ -24,8 +19,6 @@ import { AppComponent } from '.././app.component';
 describe('GridComponent', () => {
     let component: GridComponent;
     let fixture: ComponentFixture<GridComponent>;
-    let debugElement: DebugElement;
-    let htmlElement: HTMLElement;
     let pinStub: PinnerStub;
 
     beforeEach(async(() => {

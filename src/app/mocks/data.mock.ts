@@ -1,4 +1,4 @@
-import { IMarker } from './interfaces/IMarker';
+import { IMarker } from '.././interfaces/IMarker';
 
 export const phishMock1: any = {
     phish_id: '5302705',

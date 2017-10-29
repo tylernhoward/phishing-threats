@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   months: Array<Object> = [{ 's': 'January', 'n': 0 }, { 's': 'February', 'n': 1 }, { 's': 'March', 'n': 2 },
   { 's': 'April', 'n': 3 }, { 's': 'May', 'n': 4 }, { 's': 'June', 'n': 5 },
   { 's': 'July', 'n': 6 }, { 's': 'August', 'n': 7 }, { 's': 'September', 'n': 8 },
-  { 's': 'October', 'n': 9 }, { 's': 'November', 'n': 10 }, { 's': 'December', 'n': 11 }];;
+  { 's': 'October', 'n': 9 }, { 's': 'November', 'n': 10 }, { 's': 'December', 'n': 11 }];
   years: Array<String>;
   targetCount: any;
   countryCount: any;
@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
 
     this.sortByDate();
     this.dateCount = this.counter.countDates(this.phishData);
-    const yearHigh = this.dateCount[0]['id'].substring(0, 4); //cuts year: YYYY out
+    const yearHigh = this.dateCount[0]['id'].substring(0, 4); // cuts year: YYYY out
     this.years = [yearHigh, String(yearHigh - 1), String(yearHigh - 2)];
 
     this.countingDone = true;
@@ -180,8 +180,12 @@ export class AppComponent implements OnInit {
      if (this.sortedData.length === 0) {
        this.noResults = true;
       } else {
+        if (this.sortedData.length <= 100) {
+          this.mapDesc = 'the unique locations of ' + this.sortedData.length + ' phishing reports with the filters below';
+        } else {
         this.mapDesc = 'the unique locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
-        this.phishData = this.sortedData;
+        }
+      this.phishData = this.sortedData;
       }
     }
   }

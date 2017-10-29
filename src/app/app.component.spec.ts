@@ -1,7 +1,7 @@
-import { LocationStub } from './location.stub';
+import { LocationStub } from './mocks/location.stub';
 import { Observable } from 'rxjs/Observable';
-import { DataStub } from './data.stub';
-import { phishMock1, phishMock2, phishMocks, ipMock } from './data.mock';
+import { DataStub } from './mocks/data.stub';
+import { phishMock1, phishMock2, phishMocks, ipMock } from './mocks/data.mock';
 import { PinnerService } from './services/pinner.service';
 import { CounterService } from './services/counter.service';
 import { LocationService } from './services/location.service';
@@ -22,10 +22,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
   let dataStub: DataStub;
-  let locationStub: LocationStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

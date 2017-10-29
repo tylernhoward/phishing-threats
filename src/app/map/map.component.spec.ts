@@ -1,11 +1,8 @@
-import { LocationStub } from '.././location.stub';
+import { LocationStub } from '.././mocks/location.stub';
 import { Observable } from 'rxjs/Observable';
-import { DataStub } from '.././data.stub';
-import { phishMock1, phishMock2, phishMocks, ipMock } from '.././data.mock';
+import { phishMock1, phishMock2, phishMocks, ipMock } from '.././mocks/data.mock';
 import { PinnerService } from '.././services/pinner.service';
-import { CounterService } from '.././services/counter.service';
 import { LocationService } from '.././services/location.service';
-import { LoadDataService } from '.././services/load-data.service';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToModule } from 'ng2-scroll-to';
@@ -22,8 +19,6 @@ import { AppComponent } from '.././app.component';
 describe('MapComponent', () => {
     let component: MapComponent;
     let fixture: ComponentFixture<MapComponent>;
-    let debugElement: DebugElement;
-    let htmlElement: HTMLElement;
     let locationStub: LocationStub;
 
     beforeEach(async(() => {
@@ -46,8 +41,7 @@ describe('MapComponent', () => {
             ]
         }).overrideComponent(MapComponent, {
             set: {
-                providers: [{ provide: LoadDataService, useClass: DataStub }, { provide: LocationService, useClass: LocationStub },
-                    CounterService, PinnerService],
+                providers: [{ provide: LocationService, useClass: LocationStub }, PinnerService],
             }
         }).compileComponents();
     }));

@@ -1,11 +1,5 @@
-import { countMock } from './../data.mock';
-import { LocationStub } from '.././location.stub';
+import { countMock } from './../mocks/data.mock';
 import { Observable } from 'rxjs/Observable';
-import { DataStub } from '.././data.stub';
-import { PinnerService } from '.././services/pinner.service';
-import { CounterService } from '.././services/counter.service';
-import { LocationService } from '.././services/location.service';
-import { LoadDataService } from '.././services/load-data.service';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToModule } from 'ng2-scroll-to';
@@ -22,9 +16,7 @@ import { AppComponent } from '.././app.component';
 describe('ChartComponent', () => {
     let component: ChartComponent;
     let fixture: ComponentFixture<ChartComponent>;
-    let debugElement: DebugElement;
-    let htmlElement: HTMLElement;
-    let mock: Array<Object> = countMock;
+    const mock: Array<Object> = countMock;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

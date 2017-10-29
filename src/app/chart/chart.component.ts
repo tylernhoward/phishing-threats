@@ -1,4 +1,3 @@
-import { CounterService } from './../services/counter.service';
 import { Http, Response } from '@angular/http';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -51,9 +50,9 @@ export class ChartComponent implements OnInit {
     this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
   }
 
-  // public chartClicked(e: any): void { }
+  public chartClicked(e: any): void { }
 
-  // public chartHovered(e: any): void { }
+  public chartHovered(e: any): void { }
 
   loadPie() {
     for (let i = 0; i < 6; i++) { // Top 6 Countries

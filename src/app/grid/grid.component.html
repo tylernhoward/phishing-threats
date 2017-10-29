@@ -25,7 +25,7 @@
 
     <div class= "mx-auto text-center">
         <br>
-        <ngb-pagination class="pagination" [collectionSize]="data.length" [(page)]="pageInd" [maxSize]="10" (pageChange)="goToPage()" [rotate]="true" [ellipses]="false"
+        <ngb-pagination class="pagination" [collectionSize]="data.length" [(page)]="pageInd" [maxSize]="10" (pageChange)="goToNewPage()" [rotate]="true" [ellipses]="false"
         [boundaryLinks]="true"></ngb-pagination>
         <small> Page {{pageInd}} of {{pageCount}}</small>
         <br>

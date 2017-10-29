@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CounterService {
-  isoCountries: any;
-  constructor() {
+    constructor() {
   }
 
   // Counting Functions for data feed

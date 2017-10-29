@@ -21,7 +21,7 @@ export class MapComponent implements OnInit, OnChanges {
             this.pin();
         });
     }
-    // clickedMarker(index: number) { }
+    clickedMarker(index: number) { }
     ngOnChanges() {
         this.markers = [];
         for (let i = 0; i < 100; i++) {

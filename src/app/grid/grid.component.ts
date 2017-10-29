@@ -32,7 +32,7 @@ export class GridComponent implements OnInit, OnChanges {
             }
         }
     }
-    goToPage() {
+    goToNewPage() {
         const p = this.pageInd - 1;
         this.page = [];
         for (let i = (0 + (p * 10)); i < (10 + (p * 10)); i++) {

@@ -34,59 +34,59 @@
                         <hr>
                     </div>
                     <div class="card-body">
-                        <div *ngIf="noResults" class="text-center alert alert-warning">
+                        <div id= "noResultsLbl" *ngIf="noResults" class="text-center alert alert-warning">
                             <p>No results</p>
                         </div>
                         <div class="row">
-                            <div ngbDropdown class="col-md-4" style="margin-bottom: 5px;">
+                            <div ngbDropdown class="col-md-6" style="margin-bottom: 5px;">
                                 <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="targetDropdown" ngbDropdownToggle>Targets</button>
                                 <div ngbDropdownMenu aria-labelledby="targetDropdown">
                                     <button *ngFor="let target of targets" class="dropdown-item" (click)="selectTarget(target)" [innerHTML]="target"></button>
                                 </div>
                             </div>
-                            <div *ngIf="targetSelect" class="col-md-8">
+                            <div id = "targetLbl" *ngIf="targetSelect" class="col-md-6">
                                 <p [innerHTML]="targetSelect"></p>
                             </div>
-                            <div *ngIf="!targetSelect" class="col-md-8">
+                            <div id = "targetLbl" *ngIf="!targetSelect" class="col-md-6">
                                 <p>Select a target</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div ngbDropdown class="col-md-4" style="margin-bottom: 5px;">
+                            <div ngbDropdown class="col-md-6" style="margin-bottom: 5px;">
                                 <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="countryDropdown" ngbDropdownToggle>Country</button>
                                 <div ngbDropdownMenu aria-labelledby="countryDropdown">
                                     <button *ngFor="let country of countries" class="dropdown-item" (click)="selectCountry(country)">{{country}}</button>
                                 </div>
                             </div>
-                            <div *ngIf="countrySelect" class="col-md-8">
+                            <div id = "countryLbl" *ngIf="countrySelect" class="col-md-6">
                                 <p>{{countrySelect}}</p>
                             </div>
-                            <div *ngIf="!countrySelect" class="col-md-8">
+                            <div id = "countryLbl" *ngIf="!countrySelect" class="col-md-6">
                                 <p>Select a country</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
-                            <div ngbDropdown class="col-md-2" style="margin-bottom: 5px;">
+                            <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
                                 <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="monthDropdown" ngbDropdownToggle>Month</button>
                                 <div ngbDropdownMenu aria-labelledby="monthDropdown">
                                     <button *ngFor="let month of months" class="dropdown-item" (click)="selectMonth(month)">{{month.s}}</button>
                                 </div>
                             </div>
-                            <div ngbDropdown class="col-md-2" style="margin-bottom: 5px;">
+                            <div ngbDropdown class="col-md-3" style="margin-bottom: 5px;">
                                 <button [disabled]="!canSearch" class="btn btn-sm btn-outline-primary" id="yearDropdown" ngbDropdownToggle>Year</button>
                                 <div ngbDropdownMenu aria-labelledby="yearDropdown">
                                     <button *ngFor="let year of years" class="dropdown-item" (click)="selectYear(year)">{{year}}</button>
                                 </div>
                             </div>
-                            <div *ngIf="monthSelect || yearSelect" class="col-md-8">
+                            <div id="monthLbl" *ngIf="monthSelect || yearSelect" class="col-md-6">
                                 <p>{{monthSelect.s}}&nbsp;{{yearSelect}}</p>
                             </div>
                         </div>
                         <hr>
-                        <button class="btn btn-danger" style="margin: 10px;" [disabled]="canSearch" (click)="resetFilters()">Reset All</button>
-                        <button class="btn btn-success" style="margin: 10px;" [disabled]="!canSearch" (click)="filterData()">Search</button>
+                        <button id = "resetBtn" class="btn btn-danger" style="margin: 10px;" [disabled]="canSearch" (click)="resetFilters()">Reset All</button>
+                        <button id = "searchBtn" class="btn btn-success" style="margin: 10px;" [disabled]="!canSearch" (click)="filterData()">Search</button>
                     </div>
                 </div>
             </div>

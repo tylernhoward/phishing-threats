@@ -37,18 +37,7 @@ export class AppComponent implements OnInit {
   dataHold: any;
   isoCountries: any;
 
-  constructor(private http: Http, private loader: LoadDataService, private counter: CounterService) {
-    if (localStorage.getItem('data') !== null) { // if phishing data is present in local storage, parse it.
-      //this.phishData = JSON.parse(localStorage.getItem('data'));
-    } else { // if not load from API get request
-      this.loader.getData().subscribe((data) => {
-        this.phishData = data;
-        this.setUp();
-        //localStorage.clear();
-        //localStorage.setItem('data', JSON.stringify(this.phishData));
-      });
-    }
-  }
+  constructor(private http: Http, private loader: LoadDataService, private counter: CounterService) { }
 
   setUp() {
     this.canSearch = true;
@@ -62,8 +51,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setDesc();
-    this.resetFilters();
+    this.loader.getData().subscribe((data) => {
+      this.phishData = data;
+      this.setUp();
+      this.setDesc();
+      this.resetFilters();
+    });
   }
   setDesc() {
     this.description = 'This is a visualization of all currently active phishing threats as reported by PhishTank.';

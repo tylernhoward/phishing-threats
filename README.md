@@ -1,27 +1,36 @@
-# VulnerabilityMap
+# Phishing Threats Visualization
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
+### Overview
+Angular based application aimed at visualizing current online phishing threats across the world. Data is retrieved from PhishTank, and is presented in the form of geo-location data on a map, dynamic charts, and a filterable grid. Makes use of the PhishTank API, Google Maps API, and FreeGeoIP API.
 
-## Development server
+Up-to-date Heroku instance is online at: (http://phishing-threats.herokuapp.com)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Dependencies
+**Make sure you have Node.js installed**
+Included during installation of node modules, but to name a few fun ones:
+- **Angular Google Maps (AGM)** to make use of Google Map API
+- **Angular 2 Charts (ng2-charts)** to make use of the popular Chart.js library
+- **Ng2-scroll-to** to animate scrolling to anchor links
+- **Express w/ Axios** as API layer for HTTP requests.
 
-## Code scaffolding
+### Set-up
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Naturally, the first step is to clone the repository to your local machine using Git.
+```
+git clone https://github.com/tylernhoward/phishing-threats.git
+```
+After this, simply navigate to the directory.
+```
+cd phishing-threats
+```
+Next, you want to install all the required dependencies for the project.
+```
+npm install
+```
+And finally, the last step is to build the project and start the server. To do this, simply run:
+```
+npm start
+```
+The application is now running at (http://localhost:3000)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

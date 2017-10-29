@@ -1,17 +1,23 @@
 # Phishing Threats Visualization
 
 ### Overview
-Angular based application aimed at visualizing current online phishing threats across the world. Data is retrieved from PhishTank, and is presented in the form of geo-location data on a map, dynamic charts, and a filterable grid. Makes use of the PhishTank API, Google Maps API, and FreeGeoIP API.
 
-Up-to-date Heroku instance is online at: (http://phishing-threats.herokuapp.com)
+Angular based application aimed at visualizing current online phishing threats across the world. Data is retrieved from [PhishTank](http://www.phishtank.com/), and is presented in the form of geo-location data on a map, dynamic charts, and a filterable grid. Makes use of the [PhishTank API](https://www.phishtank.com/developer_info.php), Google Maps API, and [FreeGeoIP API](http://freegeoip.net).
+
+Up-to-date Heroku instance is online at: http://phishing-threats.herokuapp.com
 
 ### Dependencies
-**Make sure you have Node.js installed**
-Included during installation of node modules, but to name a few fun ones:
-- **Angular Google Maps (AGM)** to make use of Google Map API
-- **Angular 2 Charts (ng2-charts)** to make use of the popular Chart.js library
-- **Ng2-scroll-to** to animate scrolling to anchor links
+
+**Make sure you have [Node.js] installed**
+
+The other dependencies are installed during the set-up steps, but to name a few fun ones:
+
+- **[Angular Google Maps (AGM)](https://angular-maps.com)** to make use of Google Map API
+- **[Angular 2 Charts (ng2-charts)](https://valor-software.com/ng2-charts/)** to make use of the popular Chart.js library
+- **[Ng2-scroll-to](https://www.npmjs.com/package/ng2-scroll-to)** to animate scrolling to anchor links
 - **Express w/ Axios** as API layer for HTTP requests.
+
+(I guess this could be called an *[EAN app](http://mean.io/)* since it is missing Mongo DB)
 
 ### Set-up
 
@@ -31,6 +37,8 @@ And finally, the last step is to build the project and start the server. To do t
 ```
 npm start
 ```
-The application is now running at (http://localhost:3000)
+The application is now running at http://localhost:3000
 
+### Further Development
 
+In the case you wish to make additions or collaborate in some way, it is important to note that CI is set up through Travis, and the specified tests must pass for the build to succeed. See the .spec files within the project.

@@ -1,6 +1,6 @@
 {
   "name": "phishing-threats",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "server.js",
   "scripts": {

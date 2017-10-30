@@ -182,7 +182,7 @@ export class AppComponent implements OnInit {
       } else {
         if (this.sortedData.length <= 100) {
           this.mapDesc = 'the unique hosting locations of ' + this.sortedData.length + ' phishing reports with the filters below';
-        } else {
+        } else 
         if (this.sortedData.length === 1) {
           this.mapDesc = 'the unique hosting locations of ' + this.sortedData.length + ' phishing report with the filters below';
         } else {

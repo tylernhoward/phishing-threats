@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
   setDesc() {
     this.description = 'This is a visualization of all currently active phishing threats as reported by PhishTank.';
-    this.mapDesc = 'the unique locations of the last 100 reported IP addresses.';
+    this.mapDesc = 'the unique hosting locations of the last 100 reported IP addresses.';
   }
 
   formatData() {
@@ -181,9 +181,12 @@ export class AppComponent implements OnInit {
        this.noResults = true;
       } else {
         if (this.sortedData.length <= 100) {
-          this.mapDesc = 'the unique locations of ' + this.sortedData.length + ' phishing reports with the filters below';
+          this.mapDesc = 'the unique hosting locations of ' + this.sortedData.length + ' phishing reports with the filters below';
         } else {
-        this.mapDesc = 'the unique locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
+        if (this.sortedData.length === 1) {
+          this.mapDesc = 'the unique hosting locations of ' + this.sortedData.length + ' phishing report with the filters below';
+        } else {
+          this.mapDesc = 'the unique hosting locations of the last 100 out of ' + this.sortedData.length + ' phising reports with the filters below.';
         }
       this.phishData = this.sortedData;
       }

@@ -42,7 +42,8 @@ export class GridComponent implements OnInit, OnChanges {
         }
     }
     showMarkerOnMap(i: number) {
-        this.pinner.emit(this.data[i]);
+        const c = i + ((this.pageInd - 1) * 10);
+        this.pinner.emit(this.data[c]);
     }
 }
 

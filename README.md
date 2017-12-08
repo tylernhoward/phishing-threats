@@ -41,4 +41,4 @@ The application is now running at http://localhost:3000
 
 ### Further Development
 
-In the case you wish to make additions or collaborate in some way, it is important to note that CI is set up through Travis, and the specified tests must pass for the build to succeed. See the .spec files within the project. You can see test results by running `ng test`
+In the case you wish to make additions or collaborate in some way, it is important to note that CI is set up through Travis, and the specified tests must pass for the build to succeed. See the .spec files within the project. You can see test results by running `npm test` or `ng test -sm false`
